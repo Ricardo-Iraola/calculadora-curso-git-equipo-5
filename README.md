@@ -77,4 +77,4 @@ calculadora-curso-git/
 | `multiplicar(a, b)` | ✅ Implementada | Multiplica dos números |
 | `dividir(a, b)` | ✅ Implementada | Divide dos números |
 | `potencia(base, exp)` | ✅ Implementada | Eleva un número a una potencia |
-| `raizCuadrada(num)` | ⏳ Pendiente | Calcula la raíz cuadrada |
+| `raizCuadrada(num)` | ✅ Implementada | Calcula la raíz cuadrada |
