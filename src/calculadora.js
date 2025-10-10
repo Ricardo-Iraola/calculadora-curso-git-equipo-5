@@ -12,7 +12,10 @@ class Calculadora {
   }
 
   dividir(a, b) {
-    // TODO: Implementar división
+    if (b === 0) {
+        return "Error: no se puede dividir por cero";
+        }
+    return a / b;
   }
 
   potencia(base, exponente) {
