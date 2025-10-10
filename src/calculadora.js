@@ -23,7 +23,7 @@ class Calculadora {
   }
 
   raizCuadrada(numero) {
-    // TODO: Implementar raíz cuadrada
+    return Math.sqrt(numero)
   }
 }
 
