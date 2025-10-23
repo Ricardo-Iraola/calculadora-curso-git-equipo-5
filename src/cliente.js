@@ -18,6 +18,7 @@ function mostrarMenu() {
   console.log('4. Dividir');
   console.log('5. Potencia');
   console.log('6. Raíz Cuadrada');
+  console.log('7. Factorial');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -118,6 +119,13 @@ async function ejecutarOpcion(opcion) {
       );
       break;
     
+    case '7':
+      await operacionUnNumero(
+        (num) => calc.factorial(num),
+        'factorial'
+      )
+      break;
+
     case '0':
       console.log('\n¡Hasta luego! 👋');
       rl.close();
