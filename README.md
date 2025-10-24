@@ -5,7 +5,6 @@ Una calculadora simple de consola desarrollada en JavaScript con cliente interac
 - Ricardo Iraola
 - Maximiliano Rubidarte
 - Franco Cherini
--
 
 ## 📋 Características
 
@@ -51,6 +50,10 @@ Verás un menú como este:
 4. Dividir
 5. Potencia
 6. Raíz Cuadrada
+7. Factorial
+8. Resto
+9. Logaritmo Natural
+10. Maximo de un arreglo
 0. Salir
 =================================
 ```
@@ -78,3 +81,6 @@ calculadora-curso-git/
 | `dividir(a, b)` | ✅ Implementada | Divide dos números |
 | `potencia(base, exp)` | ✅ Implementada | Eleva un número a una potencia |
 | `raizCuadrada(num)` | ✅ Implementada | Calcula la raíz cuadrada |
+| `resto(a, b)` | ✅ Implementada | Calcula el resto de la division de dos números |
+| `logaritmoNatural(num)` | ✅ Implementada | Calcula el Logaritmo Natural |
+| `maximo(array)` | ✅ Implementada | Encuentra el máximo de un arreglo |
