@@ -54,6 +54,7 @@ Verás un menú como este:
 8. Resto
 9. Logaritmo Natural
 10. Maximo de un arreglo
+12. Porcentaje
 0. Salir
 =================================
 ```
@@ -86,3 +87,4 @@ calculadora-curso-git/
 | `factorial(num)` | ✅ Implementada | Calcula el factorial de un numero |
 | `maximo(array)` | ✅ Implementada | Encuentra el máximo de un arreglo |
 | `promedio(array)` | ✅ Implementada | Calcula el promedio de un arreglo |
+| `porcentaje(a, b)` | ✅ Implementada | Porcentaje de A sobre B |

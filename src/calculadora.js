@@ -1,5 +1,3 @@
-const { error } = require("console");
-
 class Calculadora {
   sumar(a, b) {
     return a + b;
@@ -68,6 +66,13 @@ class Calculadora {
      return suma/cant
   }
 
+
+  function porcentaje(a, b) {
+    if (b === 0) {
+      throw new Error("No se puede dividir por cero");
+    }
+    return (a / b) * 100;
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
@@ -92,4 +97,4 @@ console.log('- calc.resto(a, b)');
 console.log('- calc.logaritmoNatural(n)');
 console.log('- calc.numeroMaximoArreglo(arreglo)');
 console.log('- calc.promedio(arreglo)')
-
+console.log('- calc.porcentaje(a, b)');

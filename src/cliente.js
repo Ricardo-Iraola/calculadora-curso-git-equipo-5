@@ -28,7 +28,8 @@ function mostrarMenu() {
   console.log('8. Resto');
   console.log('9. Logaritmo Natural');
   console.log('10. Número máximo de un arreglo');
-  console.log('11. Calcular Promedio de Array')
+  console.log('11. Calcular Promedio de Array');
+  console.log('12. Porcentaje');
   console.log('-r. Mostrar Registro')
   console.log('0. Salir');
   console.log('=================================');
@@ -67,7 +68,7 @@ const mostrarRegistro = () => {
   }else {
     registros = ''
   }
-  
+
   registro.map((texto) => registros += texto+'\n')
   return registros
 }
@@ -77,13 +78,13 @@ const mostrarRegistro = () => {
 
   console.log(infoRegistro)
 }
-  
+
 
 
 
 async function operacionNumeros(operacion,nombreOperacion){
   const nums = await pedirNumeros('Ingrese numeros separados por espacios: ')
-  
+
   const resultado = operacion(nums)
 
 
@@ -93,9 +94,9 @@ async function operacionNumeros(operacion,nombreOperacion){
       const texto = `\n✓ Resultado: [${nums}] ${getSimboloOperacion(nombreOperacion)} = ${resultado}`
       console.log(texto)
       registrar(texto)
-    
+
   }
-    
+
 }
 
 async function operacionDosNumeros(operacion, nombreOperacion) {
@@ -166,7 +167,8 @@ function getSimboloOperacion(nombre) {
     'división': '÷',
     'potencia': '^',
     'promedio': '\u0078\u0304',
-    'raizCuadrada':'√' 
+    'raizCuadrada':'√',
+    'porcentaje':'%'
   };
   return simbolos[nombre] || '';
 }
@@ -251,7 +253,14 @@ async function ejecutarOpcion(opcion) {
     case '-r':
       await operacionRegistro(() => mostrarRegistro())
       break;
-    
+
+
+    case '12':
+          await operacionDosNumeros(
+            (a, b) => calc.porcentaje(a, b),
+            'porcentaje'
+          );
+          break;
 
     case '0':
       console.log('\n¡Hasta luego! 👋');
@@ -264,12 +273,12 @@ async function ejecutarOpcion(opcion) {
   
   return true;
 }
- 
+
 async function iniciar() {
   let continuar = true;
- 
 
-  
+
+
   while (continuar) {
     mostrarMenu();
     
