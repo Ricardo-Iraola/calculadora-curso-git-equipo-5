@@ -21,6 +21,7 @@ function mostrarMenu() {
   console.log('7. Factorial');
   console.log('8. Resto');
   console.log('9. Logaritmo Natural');
+  console.log('10. Número máximo de un arreglo');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -59,6 +60,30 @@ async function operacionUnNumero(operacion, nombreOperacion) {
   } else {
     console.log(`\n✓ Resultado: √${num} = ${resultado}`);
   }
+}
+
+async function operacionNumeroMaximoArreglo() { 
+  const numeros = [];
+  let continuar = true;
+
+  console.log("\nIngrese los números del arreglo. Ingrese 'salir' para finalizar.");
+
+  while (continuar) {
+    const entrada = await new Promise((resolve) => {
+      rl.question(`Ingrese un número (o 'fin' para finalizar): `, resolve);
+    });
+    if (entrada.toLowerCase() === 'fin') {
+      continuar = false;
+    } else {
+      const numero = parseFloat(entrada);
+      if (!isNaN(numero)) {
+        numeros.push(numero);
+      } else {
+        console.log("Valor invalido, por favor ingrese un número válido.");
+    }
+  }
+}
+  console.log(`\n✓ Resultado: El número máximo de [${numeros.join(', ')}] es ${calc.numeroMaximoArreglo(numeros)}`);
 }
 
 function getSimboloOperacion(nombre) {
@@ -141,6 +166,10 @@ async function ejecutarOpcion(opcion) {
             'Logaritmo Natural'
           )
           break;
+
+    case '10':
+      await operacionNumeroMaximoArreglo();
+      break;
 
     case '0':
       console.log('\n¡Hasta luego! 👋');

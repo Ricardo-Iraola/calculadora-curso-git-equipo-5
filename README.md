@@ -5,7 +5,6 @@ Una calculadora simple de consola desarrollada en JavaScript con cliente interac
 - Ricardo Iraola
 - Maximiliano Rubidarte
 - Franco Cherini
--
 
 ## 📋 Características
 
@@ -54,6 +53,7 @@ Verás un menú como este:
 7. Factorial
 8. Resto
 9. Logaritmo Natural
+10. Maximo de un arreglo
 0. Salir
 =================================
 ```
@@ -83,3 +83,5 @@ calculadora-curso-git/
 | `raizCuadrada(num)` | ✅ Implementada | Calcula la raíz cuadrada |
 | `resto(a, b)` | ✅ Implementada | Calcula el resto de la division de dos números |
 | `logaritmoNatural(num)` | ✅ Implementada | Calcula el Logaritmo Natural |
+| `factorial(num)` | ✅ Implementada | Calcula el factorial de un numero |
+| `maximo(array)` | ✅ Implementada | Encuentra el máximo de un arreglo |
