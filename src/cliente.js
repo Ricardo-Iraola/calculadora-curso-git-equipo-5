@@ -20,6 +20,7 @@ function mostrarMenu() {
   console.log('6. Raíz Cuadrada');
   console.log('7. Factorial');
   console.log('8. Resto');
+  console.log('9. Logaritmo Natural');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -132,6 +133,13 @@ async function ejecutarOpcion(opcion) {
             (a, b) => calc.resto(a, b),
             'resto'
           );
+          break;
+
+    case '9':
+          await operacionUnNumero(
+            (num) => calc.logaritmoNatural(num),
+            'Logaritmo Natural'
+          )
           break;
 
     case '0':

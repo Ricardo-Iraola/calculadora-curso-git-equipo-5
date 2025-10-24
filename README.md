@@ -53,6 +53,7 @@ Verás un menú como este:
 6. Raíz Cuadrada
 7. Factorial
 8. Resto
+9. Logaritmo Natural
 0. Salir
 =================================
 ```
@@ -81,3 +82,4 @@ calculadora-curso-git/
 | `potencia(base, exp)` | ✅ Implementada | Eleva un número a una potencia |
 | `raizCuadrada(num)` | ✅ Implementada | Calcula la raíz cuadrada |
 | `resto(a, b)` | ✅ Implementada | Calcula el resto de la division de dos números |
+| `logaritmoNatural(num)` | ✅ Implementada | Calcula el Logaritmo Natural |
