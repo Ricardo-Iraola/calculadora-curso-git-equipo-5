@@ -38,7 +38,12 @@ class Calculadora {
         resultado *= i;
     }
     return resultado;
-}
+  }
+
+  function resto(a, b) {
+    return a % b;
+  }
+
 }
 
 // Exportar para usar en tests
@@ -60,3 +65,4 @@ console.log('- calc.dividir(a, b)');
 console.log('- calc.potencia(base, exponente)');
 console.log('- calc.raizCuadrada(numero)');
 console.log('- calc.factorial(n)');
+console.log('- calc.resto(a, b)');
