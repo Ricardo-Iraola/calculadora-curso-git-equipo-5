@@ -92,3 +92,4 @@ console.log('- calc.resto(a, b)');
 console.log('- calc.logaritmoNatural(n)');
 console.log('- calc.numeroMaximoArreglo(arreglo)');
 console.log('- calc.promedio(arreglo)')
+

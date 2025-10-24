@@ -1,6 +1,12 @@
 const readline = require('readline');
 const Calculadora = require('./calculadora');
 
+
+
+ let registro = []  // Registro de operaciones
+
+
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -23,6 +29,7 @@ function mostrarMenu() {
   console.log('9. Logaritmo Natural');
   console.log('10. Número máximo de un arreglo');
   console.log('11. Calcular Promedio de Array')
+  console.log('-r. Mostrar Registro')
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -49,16 +56,43 @@ function pedirNumero(mensaje) {
 
 }
 
+ function registrar (operacion){
+    registro.push(operacion)
+}
+
+const mostrarRegistro = () => {
+  let registros = 'sin registros'
+  if (registro.length === 0 ){
+    return registros
+  }else {
+    registros = ''
+  }
+  
+  registro.map((texto) => registros += texto+'\n')
+  return registros
+}
+
+ function operacionRegistro (){
+  const infoRegistro = mostrarRegistro()
+
+  console.log(infoRegistro)
+}
+  
+
+
 
 async function operacionNumeros(operacion,nombreOperacion){
   const nums = await pedirNumeros('Ingrese numeros separados por espacios: ')
   
   const resultado = operacion(nums)
 
+
   if (resultado === undefined) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
   }else {
-      console.log(`\n✓ Resultado: [${nums}] ${getSimboloOperacion(nombreOperacion)} = ${resultado}`)
+      const texto = `\n✓ Resultado: [${nums}] ${getSimboloOperacion(nombreOperacion)} = ${resultado}`
+      console.log(texto)
+      registrar(texto)
     
   }
     
@@ -73,7 +107,9 @@ async function operacionDosNumeros(operacion, nombreOperacion) {
   if (resultado === undefined) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
   } else {
-    console.log(`\n✓ Resultado: ${num1} ${getSimboloOperacion(nombreOperacion)} ${num2} = ${resultado}`);
+    const texto =`\n✓ Resultado: ${num1} ${getSimboloOperacion(nombreOperacion)} ${num2} = ${resultado}`;
+    console.log(texto)
+    registrar(texto)
   }
 }
 
@@ -87,7 +123,9 @@ async function operacionUnNumero(operacion, nombreOperacion) {
   } else if (isNaN(resultado)) {
     console.log(`\n⚠️  Error: Operación inválida (resultado: NaN)`);
   } else {
-    console.log(`\n✓ Resultado: √${num} = ${resultado}`);
+     const texto =`\n✓ Resultado: ${getSimboloOperacion(nombreOperacion)} ${num} = ${resultado}`;
+    console.log(texto)
+    registrar(texto)
   }
 }
 
@@ -127,7 +165,8 @@ function getSimboloOperacion(nombre) {
     'multiplicación': '×',
     'división': '÷',
     'potencia': '^',
-    'promedio': '\u0078\u0304'
+    'promedio': '\u0078\u0304',
+    'raizCuadrada':'√' 
   };
   return simbolos[nombre] || '';
 }
@@ -209,6 +248,10 @@ async function ejecutarOpcion(opcion) {
     case '11':
       await operacionNumeros((arr) => calc.promedio(arr),'promedio');
       break;
+    case '-r':
+      await operacionRegistro(() => mostrarRegistro())
+      break;
+    
 
     case '0':
       console.log('\n¡Hasta luego! 👋');
@@ -221,9 +264,11 @@ async function ejecutarOpcion(opcion) {
   
   return true;
 }
-
+ 
 async function iniciar() {
   let continuar = true;
+ 
+
   
   while (continuar) {
     mostrarMenu();
