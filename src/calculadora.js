@@ -54,6 +54,25 @@ class Calculadora {
     }
     return Math.max(...arr);
   }
+
+  promedio(arr) {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      return "Error: El promedio requiere un array de números no vacío";
+    }
+
+    //  reduce para sumar todos los elementos del array
+    const suma = arr.reduce((acumulador, actual) => {
+      // me aseguro de que cada elemento sea un número antes de sumar
+      if (typeof actual !== 'number' || isNaN(actual)) {
+        throw new Error("El array contiene elementos que no son números.");
+      }
+      return acumulador + actual;
+    }, 0);
+
+    // El promedio es la suma dividida por la cantidad de elementos
+    return suma / arr.length;
+  }
+
 }
 
 if (typeof module !== 'undefined' && module.exports) {
@@ -77,3 +96,4 @@ console.log('- calc.factorial(n)');
 console.log('- calc.resto(a, b)');
 console.log('- calc.logaritmoNatural(n)');
 console.log('- calc.numeroMaximoArreglo(arreglo)');
+console.log('- calc.promedio(arreglo)')

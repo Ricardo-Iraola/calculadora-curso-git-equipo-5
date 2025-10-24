@@ -22,6 +22,7 @@ function mostrarMenu() {
   console.log('8. Resto');
   console.log('9. Logaritmo Natural');
   console.log('10. Número máximo de un arreglo');
+  console.log('11. Calcular Promedio de Array')
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -85,6 +86,43 @@ async function operacionNumeroMaximoArreglo() {
 }
   console.log(`\n✓ Resultado: El número máximo de [${numeros.join(', ')}] es ${calc.numeroMaximoArreglo(numeros)}`);
 }
+
+async function operacionPromedioArreglo() { 
+  const numeros = [];
+  let continuar = true;
+
+  console.log("\nIngrese los números del arreglo para calcular el promedio. Ingrese 'fin' para finalizar.");
+
+  while (continuar) {
+    const entrada = await new Promise((resolve) => {
+      rl.question(`Ingrese un número (o 'fin' para finalizar): `, resolve);
+    });
+    
+    if (entrada.toLowerCase() === 'fin') {
+      continuar = false;
+    } else {
+      const numero = parseFloat(entrada);
+      if (!isNaN(numero)) {
+        numeros.push(numero);
+      } else {
+        console.log("Valor inválido, por favor ingrese un número válido.");
+      }
+    }
+  }
+  
+  // Llama a tu método implementado en la Calculadora
+  const resultado = calc.promedio(numeros);
+
+  // Muestra el resultado y maneja errores
+  if (typeof resultado === 'string' && resultado.startsWith('Error')) {
+      console.log(`\n⚠️ ${resultado}`);
+  } else {
+      console.log(`\n✓ Resultado: El promedio de [${numeros.join(', ')}] es ${resultado}`);
+  }
+}
+
+
+
 
 function getSimboloOperacion(nombre) {
   const simbolos = {
@@ -169,6 +207,10 @@ async function ejecutarOpcion(opcion) {
 
     case '10':
       await operacionNumeroMaximoArreglo();
+      break;
+
+    case '11':
+      await operacionPromedioArreglo();
       break;
 
     case '0':
