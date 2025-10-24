@@ -85,3 +85,4 @@ calculadora-curso-git/
 | `logaritmoNatural(num)` | ✅ Implementada | Calcula el Logaritmo Natural |
 | `factorial(num)` | ✅ Implementada | Calcula el factorial de un numero |
 | `maximo(array)` | ✅ Implementada | Encuentra el máximo de un arreglo |
+| `promedio(array)` | ✅ Implementada | Calcula el promedio de un arreglo |
