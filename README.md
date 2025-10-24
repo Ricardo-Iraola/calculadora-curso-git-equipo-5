@@ -44,6 +44,8 @@ Verás un menú como este:
 =================================
      CALCULADORA INTERACTIVA     
 =================================
+Info: Escriba 'M' para usar el valor en memoria
+=================================
 1. Sumar
 2. Restar
 3. Multiplicar
@@ -53,8 +55,10 @@ Verás un menú como este:
 7. Factorial
 8. Resto
 9. Logaritmo Natural
-10. Maximo de un arreglo
+10. Número máximo de un arreglo
+11. Calcular Promedio de Array
 12. Porcentaje
+-r. Mostrar Registro
 0. Salir
 =================================
 ```
@@ -88,3 +92,4 @@ calculadora-curso-git/
 | `maximo(array)` | ✅ Implementada | Encuentra el máximo de un arreglo |
 | `promedio(array)` | ✅ Implementada | Calcula el promedio de un arreglo |
 | `porcentaje(a, b)` | ✅ Implementada | Porcentaje de A sobre B |
+| `memoria` | ✅ Implementada | Guarda resultado de última operación |
