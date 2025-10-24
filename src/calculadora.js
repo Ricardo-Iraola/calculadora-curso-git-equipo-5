@@ -54,6 +54,13 @@ class Calculadora {
     }
     return Math.max(...arr);
   }
+
+  function porcentaje(a, b) {
+    if (b === 0) {
+      throw new Error("No se puede dividir por cero");
+    }
+    return (a / b) * 100;
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
@@ -77,3 +84,4 @@ console.log('- calc.factorial(n)');
 console.log('- calc.resto(a, b)');
 console.log('- calc.logaritmoNatural(n)');
 console.log('- calc.numeroMaximoArreglo(arreglo)');
+console.log('- calc.porcentaje(a, b)');
