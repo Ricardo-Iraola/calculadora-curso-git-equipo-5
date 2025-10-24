@@ -38,7 +38,22 @@ class Calculadora {
         resultado *= i;
     }
     return resultado;
-}
+  }
+
+  function resto(a, b) {
+    return a % b;
+  }
+
+  function logaritmoNatural(n) {
+    return Math.log(n);
+  }
+
+  numeroMaximoArreglo(arr) {
+    if (arr.length === 0) {
+      return undefined;
+    }
+    return Math.max(...arr);
+  }
 }
 
 // Exportar para usar en tests
@@ -52,6 +67,7 @@ const calc = new Calculadora();
 console.log('=== Calculadora Simple ===');
 console.log('Ejemplo de uso:');
 console.log('calc.sumar(5, 3):', calc.sumar(5, 3));
+console.log('calc.numeroMaximoArreglo([1, 9, 3, 5]):', calc.numeroMaximoArreglo([1, 9, 3, 5]));
 console.log('\nFunciones disponibles:');
 console.log('- calc.sumar(a, b)');
 console.log('- calc.restar(a, b)');
@@ -60,3 +76,6 @@ console.log('- calc.dividir(a, b)');
 console.log('- calc.potencia(base, exponente)');
 console.log('- calc.raizCuadrada(numero)');
 console.log('- calc.factorial(n)');
+console.log('- calc.resto(a, b)');
+console.log('- calc.logaritmoNatural(n)');
+console.log('- calc.numeroMaximoArreglo(arreglo)');
