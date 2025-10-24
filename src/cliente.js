@@ -27,6 +27,8 @@ function mostrarMenu() {
   console.log('=================================');
 }
 
+
+
 function pedirNumero(mensaje) {
   return new Promise((resolve) => {
     rl.question(mensaje, (respuesta) => {
@@ -34,6 +36,32 @@ function pedirNumero(mensaje) {
       resolve(numero);
     });
   });
+}
+
+
+ function pedirNumeros (mensaje){
+  return new Promise((resolve) => {
+    rl.question(mensaje,(respuesta) => {
+    const numeros = respuesta.split(" ").map((numero) => parseFloat(numero))
+    resolve(numeros)
+    })
+  })
+
+}
+
+
+async function operacionNumeros(operacion,nombreOperacion){
+  const nums = await pedirNumeros('Ingrese numeros separados por espacios: ')
+  
+  const resultado = operacion(nums)
+
+  if (resultado === undefined) {
+    console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
+  }else {
+      console.log(`\n✓ Resultado: [${nums}] ${getSimboloOperacion(nombreOperacion)} = ${resultado}`)
+    
+  }
+    
 }
 
 async function operacionDosNumeros(operacion, nombreOperacion) {
@@ -87,39 +115,7 @@ async function operacionNumeroMaximoArreglo() {
   console.log(`\n✓ Resultado: El número máximo de [${numeros.join(', ')}] es ${calc.numeroMaximoArreglo(numeros)}`);
 }
 
-async function operacionPromedioArreglo() { 
-  const numeros = [];
-  let continuar = true;
 
-  console.log("\nIngrese los números del arreglo para calcular el promedio. Ingrese 'fin' para finalizar.");
-
-  while (continuar) {
-    const entrada = await new Promise((resolve) => {
-      rl.question(`Ingrese un número (o 'fin' para finalizar): `, resolve);
-    });
-    
-    if (entrada.toLowerCase() === 'fin') {
-      continuar = false;
-    } else {
-      const numero = parseFloat(entrada);
-      if (!isNaN(numero)) {
-        numeros.push(numero);
-      } else {
-        console.log("Valor inválido, por favor ingrese un número válido.");
-      }
-    }
-  }
-  
-  // Llama a tu método implementado en la Calculadora
-  const resultado = calc.promedio(numeros);
-
-  // Muestra el resultado y maneja errores
-  if (typeof resultado === 'string' && resultado.startsWith('Error')) {
-      console.log(`\n⚠️ ${resultado}`);
-  } else {
-      console.log(`\n✓ Resultado: El promedio de [${numeros.join(', ')}] es ${resultado}`);
-  }
-}
 
 
 
@@ -130,7 +126,8 @@ function getSimboloOperacion(nombre) {
     'resta': '-',
     'multiplicación': '×',
     'división': '÷',
-    'potencia': '^'
+    'potencia': '^',
+    'promedio': '\u0078\u0304'
   };
   return simbolos[nombre] || '';
 }
@@ -210,7 +207,7 @@ async function ejecutarOpcion(opcion) {
       break;
 
     case '11':
-      await operacionPromedioArreglo();
+      await operacionNumeros((arr) => calc.promedio(arr),'promedio');
       break;
 
     case '0':

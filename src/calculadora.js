@@ -1,3 +1,5 @@
+const { error } = require("console");
+
 class Calculadora {
   sumar(a, b) {
     return a + b;
@@ -56,21 +58,14 @@ class Calculadora {
   }
 
   promedio(arr) {
-    if (!Array.isArray(arr) || arr.length === 0) {
-      return "Error: El promedio requiere un array de números no vacío";
+    if (arr.length === 0){
+      return "Error"
     }
+    let suma = 0;
+    let cant = arr.length
+     arr.map((numero) => suma = suma+numero)
 
-    //  reduce para sumar todos los elementos del array
-    const suma = arr.reduce((acumulador, actual) => {
-      // me aseguro de que cada elemento sea un número antes de sumar
-      if (typeof actual !== 'number' || isNaN(actual)) {
-        throw new Error("El array contiene elementos que no son números.");
-      }
-      return acumulador + actual;
-    }, 0);
-
-    // El promedio es la suma dividida por la cantidad de elementos
-    return suma / arr.length;
+     return suma/cant
   }
 
 }
