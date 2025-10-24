@@ -18,6 +18,8 @@ function mostrarMenu() {
   console.log('\n=================================');
   console.log('     CALCULADORA INTERACTIVA     ');
   console.log('=================================');
+  console.log("Info: Escriba 'M' para usar el valor en memoria");
+  console.log('=================================');
   console.log('1. Sumar');
   console.log('2. Restar');
   console.log('3. Multiplicar');
@@ -36,21 +38,32 @@ function mostrarMenu() {
 }
 
 
-
 function pedirNumero(mensaje) {
   return new Promise((resolve) => {
     rl.question(mensaje, (respuesta) => {
-      const numero = parseFloat(respuesta);
-      resolve(numero);
+      if (respuesta.trim().toUpperCase() === 'M') {
+        const valorMemoria = calc.getMemoria();
+        console.log(`(Usando valor en memoria: ${valorMemoria})`);
+        resolve(valorMemoria);
+      } else {
+        const numero = parseFloat(respuesta);
+        resolve(numero);
+      }
     });
   });
 }
 
-
  function pedirNumeros (mensaje){
   return new Promise((resolve) => {
     rl.question(mensaje,(respuesta) => {
-    const numeros = respuesta.split(" ").map((numero) => parseFloat(numero))
+    const numeros = respuesta.split(" ").map((strNumero) => {
+      if (strNumero.trim().toUpperCase() === 'M') {
+        const valorMemoria = calc.getMemoria();
+        console.log(`(Usando valor en memoria: ${valorMemoria})`);
+        return valorMemoria;
+      }
+      return parseFloat(strNumero);
+    });
     resolve(numeros)
     })
   })
@@ -102,9 +115,9 @@ async function operacionNumeros(operacion,nombreOperacion){
 async function operacionDosNumeros(operacion, nombreOperacion) {
   const num1 = await pedirNumero('Ingrese el primer número: ');
   const num2 = await pedirNumero('Ingrese el segundo número: ');
-  
+
   const resultado = operacion(num1, num2);
-  
+
   if (resultado === undefined) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
   } else {
@@ -116,9 +129,9 @@ async function operacionDosNumeros(operacion, nombreOperacion) {
 
 async function operacionUnNumero(operacion, nombreOperacion) {
   const num = await pedirNumero('Ingrese el número: ');
-  
+
   const resultado = operacion(num);
-  
+
   if (resultado === undefined) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
   } else if (isNaN(resultado)) {
@@ -130,11 +143,11 @@ async function operacionUnNumero(operacion, nombreOperacion) {
   }
 }
 
-async function operacionNumeroMaximoArreglo() { 
+async function operacionNumeroMaximoArreglo() {
   const numeros = [];
   let continuar = true;
 
-  console.log("\nIngrese los números del arreglo. Ingrese 'salir' para finalizar.");
+  console.log("\nIngrese los números del arreglo. Ingrese 'fin' para finalizar.");
 
   while (continuar) {
     const entrada = await new Promise((resolve) => {
@@ -143,11 +156,17 @@ async function operacionNumeroMaximoArreglo() {
     if (entrada.toLowerCase() === 'fin') {
       continuar = false;
     } else {
-      const numero = parseFloat(entrada);
-      if (!isNaN(numero)) {
-        numeros.push(numero);
+      if (entrada.trim().toUpperCase() === 'M') {
+        const valorMemoria = calc.getMemoria();
+        console.log(`(Usando valor en memoria: ${valorMemoria})`);
+        numeros.push(valorMemoria);
       } else {
-        console.log("Valor invalido, por favor ingrese un número válido.");
+        const numero = parseFloat(entrada);
+        if (!isNaN(numero)) {
+          numeros.push(numero);
+        } else {
+          console.log("Valor invalido, por favor ingrese un número válido.");
+      }
     }
   }
 }
@@ -181,47 +200,47 @@ async function ejecutarOpcion(opcion) {
         'suma'
       );
       break;
-    
+
     case '2':
       await operacionDosNumeros(
         (a, b) => calc.restar(a, b),
         'resta'
       );
       break;
-    
+
     case '3':
       await operacionDosNumeros(
         (a, b) => calc.multiplicar(a, b),
         'multiplicación'
       );
       break;
-    
-    case '4':
+
+    case '4.':
       await operacionDosNumeros(
         (a, b) => calc.dividir(a, b),
         'división'
       );
       break;
-    
+
     case '5':
       const base = await pedirNumero('Ingrese la base: ');
       const exponente = await pedirNumero('Ingrese el exponente: ');
       const resultadoPot = calc.potencia(base, exponente);
-      
+
       if (resultadoPot === undefined) {
         console.log('\n⚠️  La función potencia aún no está implementada');
       } else {
         console.log(`\n✓ Resultado: ${base}^${exponente} = ${resultadoPot}`);
       }
       break;
-    
+
     case '6':
       await operacionUnNumero(
         (num) => calc.raizCuadrada(num),
         'raíz cuadrada'
       );
       break;
-    
+
     case '7':
       await operacionUnNumero(
         (num) => calc.factorial(num),
