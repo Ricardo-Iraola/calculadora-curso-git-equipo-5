@@ -44,6 +44,10 @@ class Calculadora {
     return a % b;
   }
 
+  function logaritmoNatural(n) {
+    return Math.log(n);
+  }
+
 }
 
 // Exportar para usar en tests
@@ -66,3 +70,4 @@ console.log('- calc.potencia(base, exponente)');
 console.log('- calc.raizCuadrada(numero)');
 console.log('- calc.factorial(n)');
 console.log('- calc.resto(a, b)');
+console.log('- calc.logaritmoNatural(n)');
