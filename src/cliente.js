@@ -171,6 +171,13 @@ async function ejecutarOpcion(opcion) {
       await operacionNumeroMaximoArreglo();
       break;
 
+    case '11':
+          await operacionDosNumeros(
+            (a, b) => calc.porcentaje(a, b),
+            'porcentaje'
+          );
+          break;
+
     case '0':
       console.log('\n¡Hasta luego! 👋');
       rl.close();
